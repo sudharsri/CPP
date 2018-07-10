@@ -1,0 +1,731 @@
+A programming language is said to be static typing when type checking is performed during compile time as opposed to run-time.
+
+C++ fully supports object oriented programming, including their four pillars of object oriented development
+
+	* Encapsulation
+	* Data hiding
+	* Inheritance
+	* Polymorphism
+
+Standard Libraries
+
+	* The core language giving all the building blocks including variables, data types and literals etc.,
+	* The C++ Standard Library giving a rich set of functions manipulating files, strings etc.,
+	* The Standard Template Library (STL) giving a rich set of methods manipulating data structures etc.,
+
+
+When we consider a C++ program, it can be defined as a collection of objects that can be communicate via invoking each other's methods. 
+
+Objects - Objects have states and behaviors.
+
+Class - A class can be defined as a template/blueprint that describes the states/behaviors that object of its type support.
+
+Methods - Method is basically a behavior.
+
+Instance Variables - Each object has its unique set of instance variables. An Object's state is created by the values assigned to this instance variables.
+
+
+Identifiers - C++ identifier is a name used to identify a variable, function, class, module, or any other user defined item.
+
+Keywords - C++ keywords are reserved words, may not be used as constant or variable or any other user defined names.
+
+Trigraphs - A few character have an alternate representation, called trigraph sequence. A trigraph is a three character sequence that represent             a single character and the sequence always starts with two question marks.
+
+Basic C++ Data Types:
+
+	Type 			Keyword
+
+       Boolean			 bool
+       Character	         char
+       Integer                   int
+       Floating Point            float
+       Double Floating Point     double
+       Valueless                 void
+       Wide Character            wchar_t
+
+
+
+
+typedef - You can create a new name for an existing type using typedef. Following is the simple syntax to define a new type using typedef:
+
+		typedef int feet;  // typedef of int variable
+		feet x;		   // declaration of x int variable
+
+
+
+
+
+
+Enumerated Types - An enumerated type declares the optional type name and set of zero or more identifiers that can be used as values of type. 
+		   Each enumerator is a constant whose type is the enumeration. 
+
+		   enum color { red, blue, green } c;
+		   c = blue;
+
+		   enum color { red, blue=5, green};
+
+
+
+Variable Definition - A variable definition tells the compiler where and how much storage to create for the variable.
+
+Variable Declaration - A variable declaration provides assurance to the compiler that there is one variable existing with given type and name, 
+		       so that compiler proceed for further compilation without needing complete detail about the variable.
+
+
+Same concept applies on function declaration where you provide a function name at the time of its declaration and its actual definition can be 
+given anywhere else. 
+
+
+	// function declaration
+	int func();
+	int main() {
+	   // function call
+	   int i = func();
+	}
+
+	// function definition
+	int func() {
+	   return 0;
+	}
+
+
+
+
+
+Variable Scope in C++
+
+	* Inside a function or block which is called a local variable
+	* In the definition of the function parameters which is called formal parameters
+	* Outside of all functions is called global variables
+
+A program can have same name for local and global variables but value of local variable inside a function will take preference.
+
+       #include <iostream>
+	using namespace std;
+ 
+	// Global variable declaration:
+	int g = 20;
+ 
+	int main () {
+	   // Local variable declaration:
+	   int g = 10;
+ 
+	   cout << g;
+ 
+	   return 0;
+	}
+
+
+When the above code is compiled and executed, it produces the result as 10.
+
+When local variable is 	defined, it is not initialized by the system, you must initialize it yourself. 
+Global variables are initialized by the system.
+
+	Data type		Inititalizer
+	  int 			     0
+	  char			    '\0'
+	  float			     0
+	  double		     0
+	  pointer 		    NULL
+
+
+
+Constants refered to fixed values that the program may not alter and they are called literals.
+
+Constants can be of the any of the basic types and can be divided into Integer Numerals, Floating point Numerals, Strings, Characters and 
+Boolean Values.
+
+Constants are treated like regular variables except their values cannot be modified after their definition. 
+
+
+Defining Constants - There are two simple ways to define constants.
+
+	using	#define preprocessor
+	using	const keyword
+
+
+
+C++ Modifier Types
+
+    C++ allows the char, int and double data types to have modifiers preceding them. A modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. 
+
+
+	* signed
+	* unsigned	
+	* long
+	* short
+
+
+  The modifiers signed, unsigned, long and short can be applied to integer base types.
+
+  In addition, signed and unsigned can be applied to char
+
+  long can be applied to double.
+
+
+The modifiers signed and unsigned can also be used as prefix to long or short modifiers. For example, unsigned long int.
+
+C++ allows a shorthand notation for declaring unsigned, short, or long integers. You can simply use the word unsigned, short, or long, without int. It automatically implies int. For example, the following two statements both declare unsigned integer variables.
+
+	unsigned x;
+	unsigned int x;
+
+
+Type Qualifiers in C++
+
+The type qualifiers provide additional information about the variable the precede. 
+
+const - Objects of type const cannot be changed by your program during execution.
+
+volatile - The modifier volatile tells the compiler that a variable's value may be changed in ways not explicitly specified by the program.
+
+restrict - A pointer qualified by restrict is initially the only means by which the object it points to can be accessed. 
+	   Only C99 adds new type qualifier called restrict. 
+
+
+
+
+Storage Classes in C++
+
+    A Storage class defines the scope(visibility) and life-time of variables and/or functions within a C++ program.
+These specifiers preceds the type that they modify. 
+
+	* auto
+	* register
+	* static
+	* extern 
+	* mutable
+
+
+auto - auto storage class is the default storage class for all the local variables. 
+
+	{
+	   int month;
+	   auto int month;
+	}
+
+
+register - register storage class is used to define local variables that should be stored in a register instead of RAM. This means the variable
+	   has a maximum size equal to the register size(usually one word) and can't have unary '&' operator applied to it(as it doesn't have 
+	   any memory location). register should only be used for variables that requires quick access such as counters.
+
+
+static -  static storage class instruct the compiler to keep a local variable in existence during the life time of the program instead of 
+	  creating and destroying it each time when it comes into and goes out of the scope. Therefore, making local variables static allows
+	  them to maintain their values between function calls.
+
+	  The static modifier may also be applied to global variables. When this is done, it causes that variable's scope to be restricted to 
+	  the file in which it is declared. 
+
+
+	  In C++, when static is used on a class data member, it causes only one copy of that member to be shared by all the objects of its 
+	  class.
+
+
+extern - extern storage class is used to give a reference of a global variable that is visible to all the program files. When you use 'extern'
+	 the variable cannot be initialized as all it does it points the variable name at a storage location that has been previously defined.
+
+
+mutable - mutable specifier applies only to class objects. It allows a member of an object to override const member function. That is, mutable
+	  member can be modified by a const member function. 
+
+
+Operators in C++
+
+
+Arithmetic Operators -  +, -, *, /, %, ++, --
+
+Relational Operators -  ==, !=, >, <, >=, <=
+
+Logical Operators -  &&, ||, !
+
+Bitwise Operators -  &, |, ^, ~, <<, >>
+
+Assignment Operators - =, +=, -=, *=, /=, %=
+
+Misc Operators - sizeof, Condition?X:Y, comma operator, dot(.) and arrow(->), casting Operators
+
+
+There are other casting operators supported by C++.
+
+	* const_cast<type> (expr)
+	* dynamic_cast<type> (expr)
+	* reinterpret_cast<type> (expr)
+	* static_cast<type> (expr)
+
+
+
+
+Loop Types
+
+    while, do while, for
+
+    while(cond)
+    {
+
+    }
+
+    do{
+
+     } while (cond);
+
+    for(init; cond; incr)
+    {
+
+    }
+
+Loop Control statements
+
+break - Terminates the loop or switch statements and transfer execution to the statement immediately following loop or switch
+
+continue - Causes the loop to skip the remainder of the body and immediately retest its condition prior to reiterating
+
+goto - Transfer control to the labeled statement
+
+
+Decision making Statements
+
+if.. else
+
+switch  -  The expression used in a switch statement must have an integral or enumerated type, or be of a class type in which the class has a
+           single conversion function to an integral or enumerated type.
+
+switch(expression) {
+   case constant-expression  :
+      statement(s);
+      break; //optional
+   case constant-expression  :
+      statement(s);
+      break; //optional
+  
+   // you can have any number of case statements.
+   default : //Optional
+      statement(s);
+}
+
+
+C++ Functions
+
+A function is a group of statements that together perform a task. Every C++ program has atleast one function, which is main().
+
+A function declaration tells the compiler about a function's name, return type and parameters. A function definition provides the actual body of the function
+
+
+Function Arguments
+
+  If a function is to use arguments, it must declare variables that accept the values of the arguments. These variables are called the 
+formal parameters of the function.
+
+  The formal parameters behave like other local variables inside the function and are created upon entry and destroyed upon exit
+
+
+There are ways that arguments can be passed to a function:
+
+	* Call by Value
+	* Call by Pointer
+	* Call by Reference
+
+
+Call by Value - This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the
+		parameter inside the function has no effect on the argument.
+
+
+Call by Pointer - This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access 
+		  the actual argument used in the call. This means that changes made to the parameter affect the argument.
+
+Call by Reference - This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to 
+		    access the actual argument used in the call. This means that changes made to the parameter affect the argument. 
+
+
+
+Default Value for Parameters
+
+    When you define a function, you can specify a default value for each of the last parameters. This parameter will be used if the 
+corresponding argument is left blank when calling to that function.
+
+
+Numbers in C++
+
+Math Operations in C++
+
+    C++ has a rich set of mathematical operations, which can be performed on various numbers. Following are some useful built in functions
+available in C++.
+
+
+		#include<cmath>
+
+	* double cos(double);    // This function takes an angle(as double) and returns cosine
+	* double sin(double);    // Same as above, returns sine
+	* double tan(double);    // Same as above, returns tangent
+	* double log(double);    // This function takes the number and returns the natural log of that number
+	* double pow(double,double);  // The first is a number you wish to raise and second is the power you wish to raise it.
+	* double hypot(double, double); // If you pass this function the length of two sides of the right angled triangle, it will return
+					// the length of the hypotenuse.
+	* double sqrt(double);  // You pass this function a number and it gives you the square root
+	* int abs(int);		// This function returns the absolute value of an integer that passed to it.
+	* double fabs(double);  // This function returns the absolute value of any decimal number passed to it. 
+	* double floor(double); // Finds the integer which is less than or equal to the argument passed to it. 
+
+
+Random Numbers
+
+     There are many cases where you wish to generate random number. There are actually two functions you will need to know about random number
+generation. The first is rand(), this function will only return a pseudo random number. The way to fix this is to first call the srand() 
+function.
+
+		#include<cstdlib>
+
+	* rand()
+	* srand() 
+
+
+
+C++ Arrays
+
+    C++ provides a data structure, the array, which stores a fixed size sequential collection of elements of same type. An array is used to 
+store a collection of data, but it is often more useful to think of an array as a collection of variables of same type. 
+
+    All arrays consists of contiguous memory locations. The lowest address corresponds to the first element and highest address to the last
+element. 
+
+
+Declaring Arrays
+
+	double balance[5];
+
+Initializing Arrays
+
+	double balance[5] = {1000.0, 2.0, 3.4, 17.0, 50.0};
+	double balance[] = {1000.0, 2.0, 3.4, 17.0, 50.0};
+
+
+	balance[4] = 50.0;
+
+	The above statement assigns element number 5th in the array a value of 50.0. Array with 4th index will be 5th element
+	i.e., last element because all arrays have 0 as the index of their first element which is also called base index.
+
+
+Accessing Array Elements
+
+	double salary = balance[3];
+
+
+
+Multi-Dimensional Arrays
+
+     C++ supports multi-dimensional arrays. The simplest form of the multi-dimensional array is the two dimensional array.
+
+
+Initializing Two Dimensional Arrays
+
+	int a[3][4] = { {0,1,2,3}, {4,5,6,7}, {8,9,10,11} };
+
+	int a[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};
+
+
+Accessing Two Dimensional Array elements
+
+	int val = a[2][3];
+
+
+Pointer to an Array
+
+  An array name is a constant pointer to the first element of the array.
+
+	double balance[50];
+
+
+  balance is a pointer to &balance[0], which is the address of the first element of the array balance. 
+
+
+	double *p;
+	double balance[10];
+
+	p = balance;
+
+  It is legal to use array names as constant pointers, and vice versa. Therefore, *(balance + 4) is a legitimate way of accessing the data
+  at balance[4]
+
+  Once you store the address of first element in p, you can access array elements using *p, *(p+1), *(p+2) and so on. 
+
+
+
+C++ Passing Arrays to Functions
+
+    C++ does not allow to pass an entire array as an argument to a function. However, you can pass a pointer to an array by specifying the 
+array's name without an index. 
+
+	* void myFunction(int *param);
+
+	* void myFunction(int param[10]);
+
+	* void myFunction(int param[]);
+
+
+
+C++ Return Arrays from Functions
+
+    C++ does not allow to return an entire array as an argument to a function. However, you can return a pointer to an array by specifying the 
+array's name without an index.
+
+	* int * myFuntion();
+
+    C++ does not advocate to return the address of the local variable to outside the function so you would have to define the local variable as static variable. 
+
+
+C++ Strings
+
+   C++ provides following two types of string representations:
+
+	* C-Style character string
+	* The string class type introduced with Standard C++.
+
+
+The C-Style Character String
+
+    The C-Style characted string originated within the C language and continues to be supported in C++. This string is actually a one 
+dimensional array of characters which is terminated by a null character '\0'. Thus a null-terminated string contains the characters that 
+comprise the string followed by null.
+
+
+		char greeting[6] = {'H','E', 'L', 'L', 'O', '\0'};
+		char greeting[] = "HELLO";
+
+
+C++ supports wide range of functions that manipulate null-terminated strings.
+
+	* strcpy(s1,s2)   -->  Copies string s2 into string s1.
+
+	* strcat(s1,s2)   -->  Concatenates string s2 on to the end of string s1.
+
+	* strlen(s1)	  -->  Returns the length of the string s1.
+
+	* strcmp(s1,s2)   -->  Returns 0 if s1 and s2 are same, less than 0 if s1 < s2, greater than 0 if s1 > s2.
+
+	* strchr(s1,ch)   -->  Returns a pointer to the first occurance of the character ch in string s1.
+
+	* strstr(s1,s2)   -->  Returns a pointer to the first occurance of the string s2 in string s1.
+
+
+
+The String Class in C++
+
+    The standard C++ library provides a string class type that supports all the operations mentioned above, additionally much more 
+functionality. 
+
+
+
+C++ Pointers
+
+   Every variable is a memory location and every memory location has its address defined which can be accessed using & operator which 
+denotes an address in memory. 
+
+   Pointer is a variable whose value is the address of another variable. 
+
+
+NULL Pointers
+
+   C++ supports NULL pointer which is a constant with a value of zero defined in several standard libraries.
+
+   To check for a null pointer you can use an if statement as follow:
+
+	if (ptr)  // Succeeds if ptr is not null
+
+	if (!ptr) // Succeeds if ptr is null
+
+
+Pointer Arithmetic
+
+   There are four arithmetic operators that can be used on pointers. (++, --, +, -)
+
+
+Incrementing or Decrementing a pointer
+
+   We prefer using a pointer in our program instead of an array because the variable pointer can be incremented, unlike the array name which
+cannot be incremented because it is a constant pointer. 
+
+
+Pointer Comparison
+
+   Pointers may be compared using relational operators, such as ==, < and >. If p1 and p2 point to variables that are related to each other, 
+such as elements of the same array, then p1 and p2 can be meaningfully compared. 
+
+
+C++ Pointers Vs Arrays
+
+   Pointers and arrays are strongly related. In fact, pointers and arrays are interchangeabled in many cases. For example, a pointer that point
+to the begining of an array can access that array by either pointer arithmetiic or array style indexing.
+
+
+   Pointers and Arrays are not interchangeable. For example, 
+
+		#include<iostream>
+		
+		using namespace std;
+		const int MAX = 3;
+
+		int main()
+		{
+		  int var[MAX] = {10, 100, 200};
+
+		  for (int i=0; i < MAX; i++)
+		  {
+		    *var = i;      // This is incorrect
+		    var++;	   // This is incorrect
+		
+		  }
+		 return 0;
+		}	
+
+
+
+   It is perfectly acceptable to apply the pointer operator * to var but it is illegal to modify var value. The reason for this is that var
+is a constant that points to the beginning of an array and can not be used as a l-value.
+
+   Because an array name generates a pointer constant, it can still be used in pointer-style expressions, as long as it is not modified. 
+For example, the following is the valid statement that assigns var[2] the value 500.
+
+		*(var + 2) = 500;
+
+   Above statement is valid and will compile successfully because var is not changed. 
+
+
+
+C++ Array of Pointers
+
+   There may be a situation, when we want to maintain an array, which can store pointers to an int or char or any other data type available.
+
+		int *ptr[MAX];
+
+
+   This declares ptr as an array of MAX integer pointers. Thus, each element in ptr, now holds a pointer to an int value.
+
+
+C++ Pointer to Pointer
+ 
+   A pointer to a pointer is a form of multiple indirection or a chain of pointers. Normally a pointer contains the address of a variable.
+When we define a pointer to a pointer, the first pointer contains the address of the second pointer, which points to the location that 
+contains the actual value.
+
+		int **ptr;
+
+
+Passing Pointers to functions in C++
+
+  C++ allows you to pass a pointer to a function. To do so, simply declare the function parameter as a pointer type. 
+
+
+
+Returning Pointer from functions in C++
+
+  C++ allows you to return pointer from a function. 
+
+
+		int * myFunction() {      }
+
+
+
+C++ References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
